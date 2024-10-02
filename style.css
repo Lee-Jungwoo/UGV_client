@@ -33,6 +33,14 @@ h1 {
     transform: translate(-50%, -50%);
 }
 
+.red-dots {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
 .red-dot {
     width: 10px;
     height: 10px;
@@ -53,7 +61,8 @@ table {
     border-collapse: collapse;
 }
 
-th, td {
+th,
+td {
     padding: 10px;
     text-align: center;
     border-bottom: 1px solid #ddd;
