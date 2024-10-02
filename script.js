@@ -36,6 +36,8 @@ function moveUGV(ugv, path, speed, ugvName) {
             if (ugvNum == "1") {
                 if(advance){
                     path[index].y++;
+                }else {
+                    path[index].y--;
                 }
                 if ((position.y / 100) > 0.8 || (position.y / 100) < 0.1) {
                     advance = !advance;
@@ -44,6 +46,8 @@ function moveUGV(ugv, path, speed, ugvName) {
             } else if (ugvNum == "2") {
                 if(advance){
                     path[index].x++;
+                }else{
+                    path[index].x--;
                 }
                 if ((position.x / 100) > 0.8 || (position.x / 100) < 0.1) {
                     advance = !advance;
@@ -63,7 +67,7 @@ function moveUGV(ugv, path, speed, ugvName) {
         }
 
 
-        if (Math.random() > 0.8) {
+        if (Math.random() > 0.95) {
             leaveRedDot(position);
             logDefect(ugvName, position);
         }
