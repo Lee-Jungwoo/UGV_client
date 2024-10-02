@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UGV Control</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Title -->
+    <h1>UGV Control</h1>
+
+    <div class="container">
+        <!-- Map section -->
+        <div class="map">
+            <!-- Static map background -->
+            <img id="map-image" src="map.webp" alt="Static Map">
+
+            <!-- UGVs (circles with custom image) -->
+            <img src="UGV.png" class="ugv" id="ugv1" alt="UGV 1">
+            <img src="UGV.png" class="ugv" id="ugv2" alt="UGV 2">
+
+            <!-- Placeholder for red dots -->
+            <div class="red-dots"></div>
+        </div>
+
+        <!-- Defect Detection Log Table -->
+        <div class="log">
+            <div class="log-header">
+                <h2>Defect Detection Log</h2>
+                <button id="clear-log">Clear Log</button> <!--clear log button-->
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Location</th>
+                        <th>Time</th>
+                        <th>Type</th>
+                        <th>View Photo</th>
+                    </tr>
+                </thead>
+                <tbody id="log-body">
+                    <!-- Log entries will be dynamically added here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
