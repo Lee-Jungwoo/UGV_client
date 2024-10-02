@@ -6,6 +6,7 @@ const redDotsContainer = document.querySelector('.red-dots');
 const logBody = document.getElementById('log-body');
 const clearLogButton = document.getElementById('clear-log');
 
+
 // Define paths for UGVs (arrays of {x, y} positions on the map)
 const ugv1Path = [{ x: 10, y: 20 }];
 const ugv2Path = [{ x: 20, y: 80 }];
@@ -13,12 +14,16 @@ const ugv2Path = [{ x: 20, y: 80 }];
 // Define possible failures(defects)
 const failureTypes = ['도로 균열', '화재 발생', '미확인 거수자']
 
+
+
+
 // Function to move UGVs along the path
 function moveUGV(ugv, path, speed, ugvName) {
     let index = 0;
+    let advance = true;
 
     const ugvNum = ugv.dataset.ugv;
-
+    
 
     function move() {
         let position = path[index];
@@ -27,19 +32,23 @@ function moveUGV(ugv, path, speed, ugvName) {
             const mapWidth = mapImage.clientWidth;
             const mapHeight = mapImage.clientHeight;
 
+            
             if (ugvNum == "1") {
-                if ((position.y / 100) > 80) {
-                    path[index].y--;
-
-                } else {
+                if(advance){
                     path[index].y++;
                 }
+                if ((position.y / 100) > 0.8 || (position.y / 100) < 0.1) {
+                    advance = !advance;
+                }
+
             } else if (ugvNum == "2") {
-                if ((position.x / 100) > 80) {
-                    path[index].x--;
-                } else {
+                if(advance){
                     path[index].x++;
                 }
+                if ((position.x / 100) > 0.8 || (position.x / 100) < 0.1) {
+                    advance = !advance;
+                }
+
             }
 
             position = path[index]; // update path array
@@ -91,8 +100,8 @@ function logDefect(ugvName, position) {
 }
 
 // Start moving UGVs
-moveUGV(ugv1, ugv1Path, 1000, 'UGV 1'); // Move every 1 second
-moveUGV(ugv2, ugv2Path, 1200, 'UGV 2'); // Move every 1.2 seconds
+moveUGV(ugv1, ugv1Path, 100, 'UGV 1'); // Move every 1 second
+moveUGV(ugv2, ugv2Path, 120, 'UGV 2'); // Move every 1.2 seconds
 
 
 clearLogButton.addEventListener('click', function () {
@@ -100,4 +109,4 @@ clearLogButton.addEventListener('click', function () {
     while (redDotsContainer.firstChild) {
         redDotsContainer.removeChild(redDotsContainer.firstChild);
     }
-})
+});
