@@ -137,22 +137,29 @@ document.querySelector('.close-btn').addEventListener('click', function() {
 
 // Function to log defect in the table
 function logDefect(ugvName, position, f) {
-    
+    let url;
+    if(f === '도로 균열'){
+        url = 'road_crack.jpg';
+    }else if(f === '화재 발생'){
+        url = 'fire.png';
+    }else if(f==='미확인 거수자'){
+        url = 'unidentified_people.jpeg';
+    }
     
     const logEntry = `
         <tr>
             <td>${ugvName}</td>
             <td>${new Date().toLocaleString()}</td>
             <td>${f}</td>
-            <td><a href="#">View Photo</a></td>
+            <td><a href="${url}">View Photo</a></td>
         </tr>
     `;
     logBody.innerHTML += logEntry;
 }
 
 // Start moving UGVs
-moveUGV(ugv1, ugv1Path, 1000, 'UGV 1'); // Move every 1 second
-moveUGV(ugv2, ugv2Path, 1200, 'UGV 2'); // Move every 1.2 seconds
+moveUGV(ugv1, ugv1Path, 10, 'UGV 1'); // Move every 1 second
+moveUGV(ugv2, ugv2Path, 12, 'UGV 2'); // Move every 1.2 seconds
 
 
 clearLogButton.addEventListener('click', function () {

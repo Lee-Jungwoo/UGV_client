@@ -52,8 +52,11 @@ h1 {
 .log {
     width: 30%;
     padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
     background-color: #f9f9f9;
     border-left: 2px solid #ccc;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
 table {
@@ -82,6 +85,37 @@ a:hover {
     justify-content: space-between;
     align-items: center;
 }
+
+.logTable {
+    max-height: 80%;  /* Set a fixed height for the table container */
+    overflow-y: auto;   /* Enable vertical scrolling when content exceeds the height */
+    width: 100%;        /* Ensure the table takes up the full width */
+    border: 1px solid #ccc; /* Optional: Add a border around the table */
+}
+
+/* Optional: Styling for the table itself */
+.logTable table {
+    width: 100%;
+    border-collapse: collapse; /* Makes the table look cleaner */
+}
+
+/* Style for the table header */
+.logTable thead th {
+    background-color: #f2f2f2;
+    padding: 8px;
+    text-align: left;
+    position: sticky;  /* Keep the header fixed at the top */
+    top: 0;            /* This ensures the header sticks to the top when scrolling */
+    z-index: 2;        /* Ensure the header stays above the table rows */
+}
+
+/* Style for the table rows */
+#logTable tbody td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
 
 #clear-log {
     background-color: #ff5c5c;
