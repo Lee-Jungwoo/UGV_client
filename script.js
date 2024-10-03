@@ -8,12 +8,14 @@ const clearLogButton = document.getElementById('clear-log');
 
 
 // Define paths for UGVs (arrays of {x, y} positions on the map)
-const ugv1Path = [{ x: 10, y: 20 }];
-const ugv2Path = [{ x: 20, y: 80 }];
+const ugv1Path = [{ x: 50, y: 10 }];
+const ugv2Path = [{ x: 10, y: 48 }];
 
 // Define possible failures(defects)
 const failureTypes = ['도로 균열', '화재 발생', '미확인 거수자']
 
+// Array to store defects
+const defects = [];
 
 
 
@@ -68,8 +70,10 @@ function moveUGV(ugv, path, speed, ugvName) {
 
 
         if (Math.random() > 0.95) {
-            leaveRedDot(position);
-            logDefect(ugvName, position);
+            const f = failureTypes[Math.floor(Math.random() * 3)];
+
+            leaveRedDot(position, ugvNum, f);
+            logDefect(ugvName, position, f);
         }
 
 
@@ -80,23 +84,65 @@ function moveUGV(ugv, path, speed, ugvName) {
 }
 
 // Function to leave a red dot at the UGV's current position
-function leaveRedDot(position) {
+function leaveRedDot(position, ugvNum, f) {
+    
+    let url;
+    if(f === '도로 균열'){
+        url = 'road_crack.jpg';
+    }else if(f === '화재 발생'){
+        url = 'fire.png';
+    }else if(f==='미확인 거수자'){
+        url = 'unidentified_people.jpg';
+    }
+
+    const defect = {
+        type: f,
+        location: `UGV${ugvNum}`,
+        time: new Date().toLocaleString(),
+        photo: url,
+    };
+
+    defects.push(defect);
+    
+    
     const dot = document.createElement('div');
     dot.classList.add('red-dot');
     dot.style.left = position.x + '%';
     dot.style.top = position.y + '%';
+    
+
+    dot.addEventListener('click', function() {
+        showDefectPopup(defect);
+    });
+
     redDotsContainer.appendChild(dot);
 }
 
+function showDefectPopup(defect) {
+    // Populate the popup with defect data
+    document.getElementById('defect-type').innerText = defect.type;
+    document.getElementById('defect-location').innerText = defect.location;
+    document.getElementById('defect-time').innerText = defect.time;
+    document.getElementById('defect-photo').src = defect.photo;
+
+    // Show the popup
+    document.getElementById('defect-popup').classList.remove('hidden');
+    document.getElementById('defect-popup').style.display = 'block';
+}
+
+document.querySelector('.close-btn').addEventListener('click', function() {
+    document.getElementById('defect-popup').style.display = 'none';
+});
+
 // Function to log defect in the table
-function logDefect(ugvName, position) {
+function logDefect(ugvName, position, f) {
     
     
     const logEntry = `
         <tr>
             <td>${ugvName}</td>
             <td>${new Date().toLocaleString()}</td>
-            <td>${failureTypes[Math.floor(Math.random() * 3)]}</td>
+            <td>${f}</td>
             <td><a href="#">View Photo</a></td>
         </tr>
     `;
@@ -104,8 +150,8 @@ function logDefect(ugvName, position) {
 }
 
 // Start moving UGVs
-moveUGV(ugv1, ugv1Path, 100, 'UGV 1'); // Move every 1 second
-moveUGV(ugv2, ugv2Path, 120, 'UGV 2'); // Move every 1.2 seconds
+moveUGV(ugv1, ugv1Path, 1000, 'UGV 1'); // Move every 1 second
+moveUGV(ugv2, ugv2Path, 1200, 'UGV 2'); // Move every 1.2 seconds
 
 
 clearLogButton.addEventListener('click', function () {
