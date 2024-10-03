@@ -92,9 +92,10 @@ function leaveRedDot(position, ugvNum, f) {
     }else if(f === '화재 발생'){
         url = 'fire.png';
     }else if(f==='미확인 거수자'){
-        url = 'unidentified_people.jpg';
+        url = 'unidentified_people.jpeg';
     }
 
+    console.log(url);
     const defect = {
         type: f,
         location: `UGV${ugvNum}`,
