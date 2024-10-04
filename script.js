@@ -6,6 +6,9 @@ const redDotsContainer = document.querySelector('.red-dots');
 const logBody = document.getElementById('log-body');
 const clearLogButton = document.getElementById('clear-log');
 
+// Select the photo popup
+const photoPopup = document.getElementById('photo-popup');
+const popupPhoto = document.getElementById('popup-photo');
 
 // Define paths for UGVs (arrays of {x, y} positions on the map)
 const ugv1Path = [{ x: 50, y: 10 }];
@@ -151,7 +154,7 @@ function logDefect(ugvName, position, f) {
             <td>${ugvName}</td>
             <td>${new Date().toLocaleString()}</td>
             <td>${f}</td>
-            <td><a href="${url}">View Photo</a></td>
+            <td><button class="view-photo" data-photo="${url}">View Photo</a></td>
         </tr>
     `;
     logBody.innerHTML += logEntry;
@@ -168,3 +171,45 @@ clearLogButton.addEventListener('click', function () {
         redDotsContainer.removeChild(redDotsContainer.firstChild);
     }
 });
+
+
+
+// Function to show photo popup
+function showPhotoPopup(photoSrc, buttonElement) {
+    // Set the photo in the popup
+    popupPhoto.src = photoSrc;
+
+    // Get the button's position and size
+    const buttonRect = buttonElement.getBoundingClientRect();
+
+    // Position the popup to the left of the button
+    const popupX = buttonRect.left - photoPopup.offsetWidth - 10; // 10px gap
+    const popupY = buttonRect.top;
+
+    // Apply the calculated position to the popup
+    photoPopup.style.left = `${popupX}px`;
+    photoPopup.style.top = `${popupY}px`;
+
+    // Show the popup
+    photoPopup.classList.remove('hidden');
+    photoPopup.style.display = 'block';
+}
+
+// Function to close the photo popup
+document.querySelector('.close-photo-btn').addEventListener('click', () => {
+    photoPopup.classList.add('hidden');
+    photoPopup.style.display = 'none';
+});
+
+// Attach click event to "View Photo" links
+document.querySelectorAll('.view-photo').forEach(button => {
+    button.addEventListener('click', function (event) {
+        event.preventDefault();
+
+        const photoSrc = this.dataset.photo; // Assuming you store the photo URL in data-photo
+        showPhotoPopup(photoSrc, this);
+    });
+    console.log("added event listener");
+    console.log(this.dataset.photo);
+});
+
