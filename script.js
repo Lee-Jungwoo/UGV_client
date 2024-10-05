@@ -154,15 +154,15 @@ function logDefect(ugvName, position, f) {
             <td>${ugvName}</td>
             <td>${new Date().toLocaleString()}</td>
             <td>${f}</td>
-            <td><button class="view-photo" data-photo="${url}">View Photo</a></td>
+            <td><button class="view-photo" data-photo="${url}">View Photo</button></td>
         </tr>
     `;
     logBody.innerHTML += logEntry;
 }
 
 // Start moving UGVs
-moveUGV(ugv1, ugv1Path, 1000, 'UGV 1'); // Move every 1 second
-moveUGV(ugv2, ugv2Path, 1200, 'UGV 2'); // Move every 1.2 seconds
+moveUGV(ugv1, ugv1Path, 10, 'UGV 1'); // Move every 1 second
+moveUGV(ugv2, ugv2Path, 120, 'UGV 2'); // Move every 1.2 seconds
 
 
 clearLogButton.addEventListener('click', function () {
@@ -183,7 +183,7 @@ function showPhotoPopup(photoSrc, buttonElement) {
     const buttonRect = buttonElement.getBoundingClientRect();
 
     // Position the popup to the left of the button
-    const popupX = buttonRect.left - photoPopup.offsetWidth - 10; // 10px gap
+    const popupX = buttonRect.left - photoPopup.offsetWidth; // 10px gap
     const popupY = buttonRect.top;
 
     // Apply the calculated position to the popup
