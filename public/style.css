@@ -28,8 +28,8 @@ h1 {
 
 .ugv {
     position: absolute;
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     transform: translate(-50%, -50%);
 }
 
@@ -151,7 +151,7 @@ a:hover {
 }
 
 #defect-photo {
-    max-width: 100%;
+    
     max-width: 100%; /* Ensure the image doesn’t exceed the popup width */
     height: auto;    /* Maintain aspect ratio */
     display: block;  /* Makes sure the image stays block-level within the popup */
@@ -188,7 +188,7 @@ a:hover {
 }
 
 .photo-popup img {
-    max-width: 200px; /* Limit the photo size */
+    width: 200px; /* Limit the photo size */
     max-height: 200px;
 }
 

@@ -3,6 +3,7 @@ const ugv1 = document.getElementById('ugv1');
 const ugv2 = document.getElementById('ugv2');
 const mapImage = document.getElementById('map-image');
 const redDotsContainer = document.querySelector('.red-dots');
+const logTable = document.querySelector(".logTable");
 const logBody = document.getElementById('log-body');
 const clearLogButton = document.getElementById('clear-log');
 
@@ -28,7 +29,7 @@ function moveUGV(ugv, path, speed, ugvName) {
     let advance = true;
 
     const ugvNum = ugv.dataset.ugv;
-    
+
 
     function move() {
         let position = path[index];
@@ -37,11 +38,11 @@ function moveUGV(ugv, path, speed, ugvName) {
             const mapWidth = mapImage.clientWidth;
             const mapHeight = mapImage.clientHeight;
 
-            
+
             if (ugvNum == "1") {
-                if(advance){
+                if (advance) {
                     path[index].y++;
-                }else {
+                } else {
                     path[index].y--;
                 }
                 if ((position.y / 100) > 0.8 || (position.y / 100) < 0.1) {
@@ -49,9 +50,9 @@ function moveUGV(ugv, path, speed, ugvName) {
                 }
 
             } else if (ugvNum == "2") {
-                if(advance){
+                if (advance) {
                     path[index].x++;
-                }else{
+                } else {
                     path[index].x--;
                 }
                 if ((position.x / 100) > 0.8 || (position.x / 100) < 0.1) {
@@ -88,13 +89,13 @@ function moveUGV(ugv, path, speed, ugvName) {
 
 // Function to leave a red dot at the UGV's current position
 function leaveRedDot(position, ugvNum, f) {
-    
+
     let url;
-    if(f === '도로 균열'){
+    if (f === '도로 균열') {
         url = 'public/road_crack.jpg';
-    }else if(f === '화재 발생'){
+    } else if (f === '화재 발생') {
         url = 'public/fire.png';
-    }else if(f==='미확인 거수자'){
+    } else if (f === '미확인 거수자') {
         url = 'public/unidentified_people.jpeg';
     }
 
@@ -107,15 +108,15 @@ function leaveRedDot(position, ugvNum, f) {
     };
 
     defects.push(defect);
-    
-    
+
+
     const dot = document.createElement('div');
     dot.classList.add('red-dot');
     dot.style.left = position.x + '%';
     dot.style.top = position.y + '%';
-    
 
-    dot.addEventListener('click', function() {
+
+    dot.addEventListener('click', function () {
         showDefectPopup(defect);
     });
 
@@ -134,21 +135,21 @@ function showDefectPopup(defect) {
     document.getElementById('defect-popup').style.display = 'block';
 }
 
-document.querySelector('.close-btn').addEventListener('click', function() {
+document.querySelector('.close-btn').addEventListener('click', function () {
     document.getElementById('defect-popup').style.display = 'none';
 });
 
 // Function to log defect in the table
 function logDefect(ugvName, position, f) {
     let url;
-    if(f === '도로 균열'){
+    if (f === '도로 균열') {
         url = 'public/road_crack.jpg';
-    }else if(f === '화재 발생'){
+    } else if (f === '화재 발생') {
         url = 'public/fire.png';
-    }else if(f==='미확인 거수자'){
+    } else if (f === '미확인 거수자') {
         url = 'public/unidentified_people.jpeg';
     }
-    
+
     const logEntry = `
         <tr>
             <td>${ugvName}</td>
@@ -157,11 +158,12 @@ function logDefect(ugvName, position, f) {
             <td><button class="view-photo" data-photo="${url}">View Photo</button></td>
         </tr>
     `;
-    logBody.innerHTML += logEntry;
+    logBody.innerHTML += logEntry;    
+
 }
 
 // Start moving UGVs
-moveUGV(ugv1, ugv1Path, 10, 'UGV 1'); // Move every 1 second
+moveUGV(ugv1, ugv1Path, 100, 'UGV 1'); // Move every 1 second
 moveUGV(ugv2, ugv2Path, 120, 'UGV 2'); // Move every 1.2 seconds
 
 
@@ -183,7 +185,7 @@ function showPhotoPopup(photoSrc, buttonElement) {
     const buttonRect = buttonElement.getBoundingClientRect();
 
     // Position the popup to the left of the button
-    const popupX = buttonRect.left - photoPopup.offsetWidth; // 10px gap
+    const popupX = buttonRect.left - 250; // 250px gap
     const popupY = buttonRect.top;
 
     // Apply the calculated position to the popup
@@ -201,15 +203,14 @@ document.querySelector('.close-photo-btn').addEventListener('click', () => {
     photoPopup.style.display = 'none';
 });
 
-// Attach click event to "View Photo" links
-document.querySelectorAll('.view-photo').forEach(button => {
-    button.addEventListener('click', function (event) {
-        event.preventDefault();
 
-        const photoSrc = this.dataset.photo; // Assuming you store the photo URL in data-photo
-        showPhotoPopup(photoSrc, this);
-    });
-    console.log("added event listener");
-    console.log(this.dataset.photo);
+
+logTable.addEventListener('click', (e) => {
+    
+    if(e.target.tagName == 'BUTTON'){
+        
+        const photoSrc = e.target.dataset.photo; // Assuming you store the photo URL in data-photo
+        showPhotoPopup(photoSrc, e.target);
+
+    }
 });
-
