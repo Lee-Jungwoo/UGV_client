@@ -91,11 +91,11 @@ function leaveRedDot(position, ugvNum, f) {
     
     let url;
     if(f === '도로 균열'){
-        url = 'road_crack.jpg';
+        url = 'public/road_crack.jpg';
     }else if(f === '화재 발생'){
-        url = 'fire.png';
+        url = 'public/fire.png';
     }else if(f==='미확인 거수자'){
-        url = 'unidentified_people.jpeg';
+        url = 'public/unidentified_people.jpeg';
     }
 
     console.log(url);
@@ -142,11 +142,11 @@ document.querySelector('.close-btn').addEventListener('click', function() {
 function logDefect(ugvName, position, f) {
     let url;
     if(f === '도로 균열'){
-        url = 'road_crack.jpg';
+        url = 'public/road_crack.jpg';
     }else if(f === '화재 발생'){
-        url = 'fire.png';
+        url = 'public/fire.png';
     }else if(f==='미확인 거수자'){
-        url = 'unidentified_people.jpeg';
+        url = 'public/unidentified_people.jpeg';
     }
     
     const logEntry = `
