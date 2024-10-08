@@ -6,46 +6,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UGV Control</title>
     <link rel="stylesheet" href="public/style.css">
-</head> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+</head>
 
 <body>
     <!-- Title -->
-    <h1>UGV Control</h1>
+    <!-- <h1 class ="main-header">UGV Control</h1> -->
+    <div class="main-header">
+        <span id="l"></span>
+        <span>UGV Control</span>
+        <span id="r"></span>
+
+    </div>
+
+
 
     <div class="container">
-        <!-- Map section -->
-        <div class="map">
-            <!-- Static map background -->
-            <img id="map-image" src="public/map.webp" alt="Static Map">
-
-            <!-- UGVs (circles with custom image) -->
-            <img src="public/UGV.png" class="ugv" id="ugv1" data-ugv="1" alt="UGV 1">
-            <img src="public/UGV.png" class="ugv" id="ugv2" data-ugv="2" alt="UGV 2">
-
-            <!-- Placeholder for red dots -->
-            <div class="red-dots"></div>
+        <div class="sidebar">
+            
         </div>
+        <div class="main-content">
+            <!-- Map section -->
+            <div class="map">
+                <!-- Static map background -->
+                <img id="map-image" src="public/Airbase_map.png" alt="Static Map">
 
-        <!-- Defect Detection Log Table -->
-        <div class="log">
-            <div class="log-header">
-                <h2>Defect Detection Log</h2>
-                <button id="clear-log">Clear Log</button> <!--clear log button-->
+                <!-- UGVs (circles with custom image) -->
+                <img src="public/UGV.png" class="ugv" id="ugv1" data-ugv="1" alt="UGV 1">
+                <img src="public/UGV.png" class="ugv" id="ugv2" data-ugv="2" alt="UGV 2">
+
+                <!-- Placeholder for red dots -->
+                <div class="red-dots"></div>
             </div>
-            <div class="logTable">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Location</th>
-                            <th>Time</th>
-                            <th>Type</th>
-                            <th>View Photo</th>
-                        </tr>
-                    </thead>
-                    <tbody id="log-body">
-                        <!-- Log entries will be dynamically added here -->
-                    </tbody>
-                </table>
+
+            <!-- Defect Detection Log Table -->
+            <div class="log">
+                <div class="log-header">
+                    <h2>Defect Detection Log</h2>
+                    <button id="clear-log">Clear Log</button> <!--clear log button-->
+                </div>
+                <div class="logTable">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Location</th>
+                                <th>Time</th>
+                                <th>Type</th>
+                                <th>View Photo</th>
+                            </tr>
+                        </thead>
+                        <tbody id="log-body">
+                            <!-- Log entries will be dynamically added here -->
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -69,7 +87,7 @@
             <img id="popup-photo" src="" alt="Defect Photo" />
         </div>
     </div>
-    
+
 
 
 

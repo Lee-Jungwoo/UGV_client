@@ -12,8 +12,8 @@ const photoPopup = document.getElementById('photo-popup');
 const popupPhoto = document.getElementById('popup-photo');
 
 // Define paths for UGVs (arrays of {x, y} positions on the map)
-const ugv1Path = [{ x: 50, y: 10 }];
-const ugv2Path = [{ x: 10, y: 48 }];
+const ugv1Path = [{ x: 19.5, y: 10 }];
+const ugv2Path = [{ x: 10, y: 53 }];
 
 // Define possible failures(defects)
 const failureTypes = ['도로 균열', '화재 발생', '미확인 거수자']
