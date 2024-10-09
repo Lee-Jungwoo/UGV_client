@@ -4,32 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UGV Control</title>
-    <link rel="stylesheet" href="public/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-        rel="stylesheet">
-</head>
+    <title>Mock UGV</title>
+    
+</head> 
 
 <body>
-    <!-- Title -->
-    <!-- <h1 class ="main-header">UGV Control</h1> -->
     <div class="main-header">
         <span id="l"></span>
         <span>UGV Dashboard</span>
         <span id="r"></span>
-
     </div>
-
-
 
     <div class="container">
         <div class="sidebar">
            <ul>
-                <li><a id="cur" href="index.html">시설 감시</a></li>
-                <li><a href="cam_index.html">원격 제어</a></li>
+                <li><a  href="index.html">시설 감시</a></li>
+                <li><a id="cur" href="phone_index.html">원격 제어</a></li>
                 <li><a href="index.html">감시 로그</a></li>
                 <li><a href="index.html">UGV 관리</a></li>
            </ul>
@@ -73,31 +63,10 @@
         </div>
     </div>
 
-    <!-- Defect Details Popup -->
-    <div id="defect-popup" class="popup hidden">
-        <div class="popup-content">
-            <span class="close-btn">&times;</span>
-            <h3>Defect Information</h3>
-            <p><strong>Defect Type:</strong> <span id="defect-type"></span></p>
-            <p><strong>Location:</strong> <span id="defect-location"></span></p>
-            <p><strong>Time:</strong> <span id="defect-time"></span></p>
-            <img id="defect-photo" src="" alt="Defect Photo" />
-        </div>
-    </div>
+    <video id="cameraview" width="720" height="480"></video>
+    
 
-    <!-- Defect Photo Popup -->
-    <div id="photo-popup" class="photo-popup hidden">
-        <div class="photo-popup-content">
-            <span class="close-photo-btn">&times;</span>
-            <img id="popup-photo" src="" alt="Defect Photo" />
-        </div>
-    </div>
+    <script src="cam/script.js"></script>
 
-
-
-
-
-    <script src="public/script.js"></script>
 </body>
-
 </html>

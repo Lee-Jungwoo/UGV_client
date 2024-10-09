@@ -1,17 +1,28 @@
-var video = document.querySelector("#videoElement");
-
-
-
-if (navigator.mediaDevices.getUserMedia) {
-  
-  
-
-  navigator.mediaDevices.getUserMedia({ video: true })
-    .then(function (stream) {
-      video.srcObject = stream;
-    })
-    .catch(function (err0r) {
-      console.log("Something went wrong!");
-    });
-    console.log('h');
+// Init camera
+function camInit(stream) {
+  var cameraView = document.getElementById("cameraview");
+  cameraView.srcObject = stream;
+  cameraView.play();
 }
+
+function camInitFailed(error) {
+  console.log("get camera permission failed : ", error)
+}
+
+// Main init
+
+function mainInit() {
+  // Check navigator media device available
+  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+    // Navigator mediaDevices not supported
+    alert("Media Device not supported")
+    return;
+  }
+
+  navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
+    .then(camInit)
+    .catch(camInitFailed);
+
+}
+
+mainInit();
