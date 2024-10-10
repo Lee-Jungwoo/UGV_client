@@ -52,7 +52,7 @@ body {
     height:10%;
 
     font-family: "Inter", sans-serif;
-    font-size: 30px;
+    font-size: 1.5vw;
     
     margin:2vh;
 }
@@ -78,7 +78,7 @@ body {
 .main-content {
     display: flex;
     justify-content: space-between;
-    height: 90vh;
+    height: 100%;
 }
 
 .map {

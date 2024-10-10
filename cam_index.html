@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mock UGV</title>
-    
+    <link rel="stylesheet" href="cam/style.css">
 </head> 
 
 <body>
@@ -19,51 +19,18 @@
         <div class="sidebar">
            <ul>
                 <li><a  href="index.html">시설 감시</a></li>
-                <li><a id="cur" href="phone_index.html">원격 제어</a></li>
+                <li><a id="cur" href="cam_index.html">원격 제어</a></li>
                 <li><a href="index.html">감시 로그</a></li>
                 <li><a href="index.html">UGV 관리</a></li>
            </ul>
         </div>
         <div class="main-content">
             <!-- Map section -->
-            <div class="map">
-                <!-- Static map background -->
-                <img id="map-image" src="public/Airbase_map.png" alt="Static Map">
-
-                <!-- UGVs (circles with custom image) -->
-                <img src="public/UGV.png" class="ugv" id="ugv1" data-ugv="1" alt="UGV 1">
-                <img src="public/UGV.png" class="ugv" id="ugv2" data-ugv="2" alt="UGV 2">
-
-                <!-- Placeholder for red dots -->
-                <div class="red-dots"></div>
-            </div>
-
-            <!-- Defect Detection Log Table -->
-            <div class="log">
-                <div class="log-header">
-                    <h2>Defect Detection Log</h2>
-                    <button id="clear-log">Clear Log</button> <!--clear log button-->
-                </div>
-                <div class="logTable">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Location</th>
-                                <th>Time</th>
-                                <th>Type</th>
-                                <th>View Photo</th>
-                            </tr>
-                        </thead>
-                        <tbody id="log-body">
-                            <!-- Log entries will be dynamically added here -->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+            <video id="cameraview"></video>
         </div>
     </div>
 
-    <video id="cameraview" width="720" height="480"></video>
+    
     
 
     <script src="cam/script.js"></script>
