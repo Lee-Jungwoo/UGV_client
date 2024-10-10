@@ -163,8 +163,8 @@ function logDefect(ugvName, position, f) {
 }
 
 // Start moving UGVs
-moveUGV(ugv1, ugv1Path, 100, 'UGV 1'); // Move every 1 second
-moveUGV(ugv2, ugv2Path, 120, 'UGV 2'); // Move every 1.2 seconds
+moveUGV(ugv1, ugv1Path, 1000, 'UGV 1'); // Move every 1 second
+moveUGV(ugv2, ugv2Path, 1200, 'UGV 2'); // Move every 1.2 seconds
 
 
 clearLogButton.addEventListener('click', function () {
